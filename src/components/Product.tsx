@@ -1,12 +1,9 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
 import "./Product.css";
-type PostContent = {
-  title: string;
-  cost: number;
-  url: string;
-};
-function Product({ title, cost, url }: PostContent) {
+import Button from "@material-ui/core/Button";
+import { PostContent } from "./interface";
+import { Star } from "@material-ui/icons";
+function Product({ title, cost, rate, url }: PostContent) {
   return (
     <div className="product">
       <div className="product__header">
@@ -14,7 +11,13 @@ function Product({ title, cost, url }: PostContent) {
         <div className="product__cost">
           $<strong>{cost}</strong>
         </div>
-        <div className="product__rate"></div>
+        <div className="product__rate">
+          {Array(rate)
+            .fill("")
+            .map((_) => (
+              <Star className="product__star"></Star>
+            ))}
+        </div>
       </div>
       <div className="product__content">
         <img className="product__img" src={url} alt="" />
