@@ -1,0 +1,52 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  color: white;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header__logo {
+  width: 100px;
+  object-fit: contain;
+  margin: 0 20px;
+  margin-left: 20px;
+}
+.header__search {
+  background-color: white;
+  width: 100%;
+}
+.header__search > .MuiInput-root {
+  width: 100%;
+  padding-left: 10px;
+}
+.header__nav {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-evenly;
+  min-width: 265px;
+}
+.header__option {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+}
+.header__optionBasket {
+  flex-direction: row;
+  align-items: center;
+}
+.header__BasketCount {
+  margin: 0 5px;
+}
+.header__optionUp {
+  font-size: 10px;
+}
+.header__optionDown {
+  font-size: 14px;
+  font-weight: 600;
+}
