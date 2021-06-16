@@ -1,0 +1,17 @@
+.busketItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  margin: 5px 0;
+  width: 100%;
+}
+.busketItem__img {
+  max-height: 175px;
+  object-fit: contain;
+  margin-right: 15px;
+}
+.busketItem__cost {
+  margin-left: 10px;
+}

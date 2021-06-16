@@ -1,0 +1,36 @@
+.busket {
+  background-color: #eaeded;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.busket__cart {
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  z-index: 1;
+}
+.busket__total {
+  min-width: 250px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  z-index: 1;
+}
+.busket__btn {
+  margin-top: 5px;
+}
+.busket__btn > button {
+  background-color: #ffb020;
+}
+.busket__btn > button:hover {
+  background-color: #ffa600;
+}
