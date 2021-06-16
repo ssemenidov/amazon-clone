@@ -1,4 +1,4 @@
-export interface PostContent {
+export interface ProductContent {
   title: string;
   cost: number;
   rate: number;

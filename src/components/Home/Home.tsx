@@ -1,10 +1,10 @@
 import React from "react";
 import "./Home.css";
 import Grid from "@material-ui/core/Grid";
-import Product from "./Product";
-import { PostContent } from "./interface";
+import Product from "../Product/Product";
+import { ProductContent } from "../Product/ProductInterface";
 
-const initialContent: PostContent = {
+const initialContent: ProductContent = {
   title:
     " 2020 Apple iPad (10.2-inch, Wi-Fi, 32GB) - Space Gray (8th Generation)",
   cost: 629.99,

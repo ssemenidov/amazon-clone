@@ -1,9 +1,9 @@
 import React from "react";
 import "./Product.css";
 import Button from "@material-ui/core/Button";
-import { PostContent } from "./interface";
+import { ProductContent } from "./ProductInterface";
 import { Star } from "@material-ui/icons";
-function Product({ title, cost, rate, url }: PostContent) {
+function Product({ title, cost, rate, url }: ProductContent) {
   return (
     <div className="product">
       <div className="product__header">

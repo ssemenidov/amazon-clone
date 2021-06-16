@@ -33,3 +33,6 @@
   background-color: #ffb020;
   color: black;
 }
+.product__btn > button:hover {
+  background-color: #ffa600;
+}
