@@ -5,7 +5,12 @@
   flex-wrap: nowrap;
   flex-direction: row;
   margin: 5px 0;
+  margin-left: 0;
+  padding-left: 0;
   width: 100%;
+}
+.MuiListItemIcon-root {
+  min-width: 40px !important;
 }
 .busketItem__img {
   max-height: 175px;
