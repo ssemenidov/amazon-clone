@@ -5,7 +5,10 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { Link } from "react-router-dom";
+import { State } from "../../Interfaces";
+import { useSelector } from "react-redux";
 function Header() {
+  const state = useSelector((state: State) => state.busket.busket);
   return (
     <div className="header">
       <Link to="/" className="header__link">
@@ -43,7 +46,9 @@ function Header() {
             <ShoppingBasketIcon></ShoppingBasketIcon>
           </Link>
 
-          <span className="header__optionDown header__BasketCount">0</span>
+          <span className="header__optionDown header__BasketCount">
+            {state.length}
+          </span>
         </div>
       </div>
     </div>
