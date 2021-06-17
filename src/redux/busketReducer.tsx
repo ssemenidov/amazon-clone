@@ -1,3 +1,4 @@
+import { Action } from "../Interfaces";
 import { ADD_PRODUCT } from "./types";
 
 const initialState = {
@@ -11,7 +12,7 @@ const initialState = {
     },
   ],
 };
-export const busketReducer = (state = initialState, action) => {
+export const busketReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case ADD_PRODUCT:
       return { ...state, busket: [...state.busket, action.item] };
