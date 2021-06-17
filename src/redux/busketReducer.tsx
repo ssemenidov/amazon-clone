@@ -1,5 +1,5 @@
 import { Action } from "../Interfaces";
-import { ADD_PRODUCT } from "./types";
+import { ADD_PRODUCT, DELETE_PRODUCT } from "./types";
 
 const initialState = {
   busket: [
@@ -16,6 +16,12 @@ export const busketReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case ADD_PRODUCT:
       return { ...state, busket: [...state.busket, action.item] };
+    case DELETE_PRODUCT:
+      let newBusket = [...state.busket];
+      newBusket.splice(action.item, 1);
+      console.log(newBusket);
+
+      return { ...state, busket: newBusket };
     default:
       return state;
   }

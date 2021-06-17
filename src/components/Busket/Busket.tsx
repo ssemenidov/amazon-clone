@@ -10,6 +10,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import { ProductContent, State } from "../../Interfaces";
 import BusketItem from "./BusketItem/BusketItem";
 import { useDispatch, useSelector } from "react-redux";
+import { DeleteProduct } from "../../redux/actions";
 
 const initialProduct: ProductContent = {
   title:
@@ -22,14 +23,23 @@ const initialProduct: ProductContent = {
 function Busket() {
   const dispatch = useDispatch();
   const state = useSelector((state: State) => state.busket.busket);
-  const [checked, setChecked] = useState(Array(state.length).fill(0));
-  const [cost, setCost] = useState(0);
+  const [checked, setChecked] = useState(Array(state.length).fill(false));
+
+  const DeleteClick = (index: number) => {
+    dispatch(DeleteProduct(index));
+    let newChecked = [...checked];
+    newChecked.splice(index, 1);
+    console.log(checked, newChecked, index);
+
+    setChecked(newChecked);
+  };
+
   const handleToggle = (index: number) => () => {
     let newChecked = [...checked];
     if (checked[index]) {
-      newChecked[index] = 0;
+      newChecked[index] = false;
     } else {
-      newChecked[index] = 1;
+      newChecked[index] = true;
     }
     setChecked(newChecked);
   };
@@ -41,18 +51,21 @@ function Busket() {
         </div>
         <Divider />
         <List component="nav">
-          {checked.map((value, index) => {
+          {state.map((value, index) => {
             return (
               <ListItem key={index} onClick={handleToggle(index)}>
                 <ListItemIcon>
                   <Checkbox
                     edge="start"
-                    checked={value}
+                    checked={checked[index]}
                     tabIndex={-1}
                     disableRipple
                   />
                 </ListItemIcon>
-                <BusketItem {...state[index]}></BusketItem>
+                <BusketItem
+                  product={value}
+                  deleteClick={() => DeleteClick(index)}
+                ></BusketItem>
               </ListItem>
             );
           })}
@@ -62,7 +75,7 @@ function Busket() {
 
       <div className="busket__total">
         <p>
-          Subtotal (1 item): <strong> ${cost}</strong>
+          Subtotal (1 item): <strong> 0</strong>
         </p>
         <div className="busket__btn">
           <Button variant="contained" color="secondary">

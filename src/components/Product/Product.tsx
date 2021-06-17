@@ -1,12 +1,9 @@
 import React from "react";
 import "./Product.css";
 import Button from "@material-ui/core/Button";
-import { ProductContent } from "../../Interfaces";
+import { BuyProduct, ProductContent } from "../../Interfaces";
 import { Star } from "@material-ui/icons";
-interface BuyProduct {
-  product: ProductContent;
-  buyProduct: () => void;
-}
+
 function Product({ product, buyProduct }: BuyProduct) {
   const { title, url, rate, cost } = product;
   return (
