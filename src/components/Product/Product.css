@@ -11,7 +11,6 @@
   margin-bottom: 15px;
 }
 .product__star {
-  color: #ffb020;
   width: 8px;
 }
 .product__img {
@@ -30,9 +29,5 @@
 }
 .product__btn > button {
   width: 100%;
-  background-color: #ffb020;
   color: black;
-}
-.product__btn > button:hover {
-  background-color: #ffa600;
 }

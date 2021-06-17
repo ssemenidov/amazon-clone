@@ -65,7 +65,9 @@ function Busket() {
           Subtotal (1 item): <strong> ${cost}</strong>
         </p>
         <div className="busket__btn">
-          <Button variant="contained">proceed to checout</Button>
+          <Button variant="contained" color="secondary">
+            proceed to checout
+          </Button>
         </div>
       </div>
     </div>

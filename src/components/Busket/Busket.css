@@ -31,9 +31,3 @@
 .busket__btn {
   margin-top: 5px;
 }
-.busket__btn > button {
-  background-color: #ffb020;
-}
-.busket__btn > button:hover {
-  background-color: #ffa600;
-}

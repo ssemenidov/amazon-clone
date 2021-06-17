@@ -20,7 +20,7 @@ function Product({ product, buyProduct }: BuyProduct) {
           {Array(rate)
             .fill("")
             .map((_) => (
-              <Star className="product__star"></Star>
+              <Star className="product__star" color="secondary"></Star>
             ))}
         </div>
       </div>
