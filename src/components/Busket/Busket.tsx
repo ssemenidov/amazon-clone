@@ -22,18 +22,15 @@ const initialProduct: ProductContent = {
 function Busket() {
   const dispatch = useDispatch();
   const state = useSelector((state: State) => state.busket.busket);
-  const [checked, setChecked] = useState([-1]);
+  const [checked, setChecked] = useState(Array(state.length).fill(0));
   const [cost, setCost] = useState(0);
-  const handleToggle = (value: number) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
+  const handleToggle = (index: number) => () => {
+    let newChecked = [...checked];
+    if (checked[index]) {
+      newChecked[index] = 0;
     } else {
-      newChecked.splice(currentIndex, 1);
+      newChecked[index] = 1;
     }
-
     setChecked(newChecked);
   };
   return (
@@ -44,13 +41,13 @@ function Busket() {
         </div>
         <Divider />
         <List component="nav">
-          {[0, 1, 2, 3].map((value, index) => {
+          {checked.map((value, index) => {
             return (
-              <ListItem key={value} onClick={handleToggle(value)}>
+              <ListItem key={index} onClick={handleToggle(index)}>
                 <ListItemIcon>
                   <Checkbox
                     edge="start"
-                    checked={checked.indexOf(value) !== -1}
+                    checked={value}
                     tabIndex={-1}
                     disableRipple
                   />

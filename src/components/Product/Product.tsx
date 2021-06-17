@@ -3,7 +3,12 @@ import "./Product.css";
 import Button from "@material-ui/core/Button";
 import { ProductContent } from "../../Interfaces";
 import { Star } from "@material-ui/icons";
-function Product({ title, cost, rate, url }: ProductContent) {
+interface BuyProduct {
+  product: ProductContent;
+  buyProduct: () => void;
+}
+function Product({ product, buyProduct }: BuyProduct) {
+  const { title, url, rate, cost } = product;
   return (
     <div className="product">
       <div className="product__header">
@@ -22,7 +27,11 @@ function Product({ title, cost, rate, url }: ProductContent) {
       <div className="product__content">
         <img className="product__img" src={url} alt="" />
         <div className="product__btn">
-          <Button variant="contained" color="primary">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => buyProduct()}
+          >
             Buy
           </Button>
         </div>

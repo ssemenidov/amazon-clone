@@ -2,8 +2,13 @@ import React from "react";
 import "./Home.css";
 import Grid from "@material-ui/core/Grid";
 import Product from "../Product/Product";
-import { ProductContent } from "../../Interfaces";
-
+import { useDispatch, useSelector } from "react-redux";
+import { AddProduct } from "../../redux/actions";
+import { ProductContent, State } from "../../Interfaces";
+interface BuyProduct {
+  product: ProductContent;
+  buyProduct: () => void;
+}
 const initialContent: ProductContent = {
   title:
     " 2020 Apple iPad (10.2-inch, Wi-Fi, 32GB) - Space Gray (8th Generation)",
@@ -13,6 +18,11 @@ const initialContent: ProductContent = {
 };
 
 function Home() {
+  const dispatch = useDispatch();
+  const state = useSelector((state: State) => state.catalog.catalog);
+  const BuyProduct = (index: number) => {
+    dispatch(AddProduct(initialContent));
+  };
   return (
     <div className="home">
       <div className="home__container">
@@ -23,10 +33,18 @@ function Home() {
         />
         <div className="home__content">
           <Grid container spacing={3}>
-            <Grid item xs={6}>
-              <Product {...initialContent}></Product>
-            </Grid>
-            <Grid item xs={6}>
+            {state.map((item, index) => {
+              return (
+                <Grid item xs={index % 5 > 1 ? 4 : 6}>
+                  <Product
+                    product={item}
+                    buyProduct={() => BuyProduct(index)}
+                  ></Product>
+                </Grid>
+              );
+            })}
+
+            {/* <Grid item xs={6}>
               <Product {...initialContent}></Product>
             </Grid>
             <Grid item xs={4}>
@@ -43,7 +61,7 @@ function Home() {
             </Grid>
             <Grid item xs={6}>
               <Product {...initialContent}></Product>
-            </Grid>
+            </Grid> */}
           </Grid>
         </div>
       </div>
