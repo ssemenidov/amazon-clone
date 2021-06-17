@@ -1,5 +1,5 @@
 import React from "react";
-import { ProductContent } from "../../Product/ProductInterface";
+import { ProductContent } from "../../../Interfaces";
 import "./BusketItem.css";
 function BusketItem({ title, cost, rate, url }: ProductContent) {
   return (

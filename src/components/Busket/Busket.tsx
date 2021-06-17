@@ -7,8 +7,9 @@ import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
-import { ProductContent } from "../Product/ProductInterface";
+import { ProductContent, State } from "../../Interfaces";
 import BusketItem from "./BusketItem/BusketItem";
+import { useDispatch, useSelector } from "react-redux";
 
 const initialProduct: ProductContent = {
   title:
@@ -19,6 +20,8 @@ const initialProduct: ProductContent = {
 };
 
 function Busket() {
+  const dispatch = useDispatch();
+  const state = useSelector((state: State) => state.busket.busket);
   const [checked, setChecked] = useState([-1]);
   const [cost, setCost] = useState(0);
   const handleToggle = (value: number) => () => {
@@ -41,7 +44,7 @@ function Busket() {
         </div>
         <Divider />
         <List component="nav">
-          {[0, 1, 2, 3].map((value) => {
+          {[0, 1, 2, 3].map((value, index) => {
             return (
               <ListItem key={value} onClick={handleToggle(value)}>
                 <ListItemIcon>
@@ -52,7 +55,7 @@ function Busket() {
                     disableRipple
                   />
                 </ListItemIcon>
-                <BusketItem {...initialProduct}></BusketItem>
+                <BusketItem {...state[index]}></BusketItem>
               </ListItem>
             );
           })}

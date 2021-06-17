@@ -2,7 +2,7 @@ import React from "react";
 import "./Home.css";
 import Grid from "@material-ui/core/Grid";
 import Product from "../Product/Product";
-import { ProductContent } from "../Product/ProductInterface";
+import { ProductContent } from "../../Interfaces";
 
 const initialContent: ProductContent = {
   title:

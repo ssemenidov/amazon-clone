@@ -1,7 +1,7 @@
 import React from "react";
 import "./Product.css";
 import Button from "@material-ui/core/Button";
-import { ProductContent } from "./ProductInterface";
+import { ProductContent } from "../../Interfaces";
 import { Star } from "@material-ui/icons";
 function Product({ title, cost, rate, url }: ProductContent) {
   return (
