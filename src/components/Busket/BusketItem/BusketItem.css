@@ -12,6 +12,12 @@
 .MuiListItemIcon-root {
   min-width: 40px !important;
 }
+.busketItem__title {
+  text-overflow: ellipsis; /* Добавляем многоточие */
+}
+.busketItem__left {
+  display: flex;
+}
 .busketItem__img {
   max-height: 170px;
   min-width: 170px;
@@ -21,6 +27,7 @@
 .busketItem__cost {
   margin-left: 10px;
 }
+
 .busketItem__content {
   align-self: stretch;
   display: flex;
