@@ -50,6 +50,7 @@
 }
 .header__optionUp {
   font-size: 10px;
+  text-decoration: none;
 }
 .header__optionDown {
   font-size: 14px;
