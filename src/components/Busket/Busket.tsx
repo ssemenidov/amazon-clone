@@ -50,12 +50,13 @@ function Busket() {
           <h1>Shopping Cart</h1>
         </div>
         <Divider />
-        <List component="nav">
+        <List component="ul">
           {state.map((value, index) => {
             return (
-              <ListItem key={index} onClick={handleToggle(index)}>
+              <ListItem key={index}>
                 <ListItemIcon>
                   <Checkbox
+                    onClick={handleToggle(index)}
                     edge="start"
                     checked={checked[index]}
                     tabIndex={-1}
