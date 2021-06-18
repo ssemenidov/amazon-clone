@@ -4,10 +4,12 @@ export interface ProductContent {
   rate: number;
   url: string;
 }
-export interface BuyProduct {
-  product: ProductContent;
-  buyProduct: () => void;
+
+export interface Action {
+  type: String;
+  item: any;
 }
+
 export interface State {
   busket: {
     busket: [
@@ -29,8 +31,4 @@ export interface State {
       }
     ];
   };
-}
-export interface Action {
-  type: String;
-  item: any;
 }
