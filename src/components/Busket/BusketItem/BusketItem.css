@@ -13,10 +13,21 @@
   min-width: 40px !important;
 }
 .busketItem__img {
-  max-height: 175px;
+  max-height: 170px;
+  min-width: 170px;
   object-fit: contain;
   margin-right: 15px;
 }
 .busketItem__cost {
   margin-left: 10px;
+}
+.busketItem__content {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.busketItem__btn {
+  margin: 10px 0;
 }

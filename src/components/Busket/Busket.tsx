@@ -24,10 +24,14 @@ function Busket() {
   const dispatch = useDispatch();
   const state = useSelector((state: State) => state.busket.busket);
   const [checked, setChecked] = useState(Array(state.length).fill(false));
-
+  const [total, setTotal] = useState(0);
   const DeleteClick = (index: number) => {
     dispatch(DeleteProduct(index));
+
     let newChecked = [...checked];
+    if (newChecked[index]) {
+      setTotal(total - state[index].cost);
+    }
     newChecked.splice(index, 1);
     console.log(checked, newChecked, index);
 
@@ -37,9 +41,11 @@ function Busket() {
   const handleToggle = (index: number) => () => {
     let newChecked = [...checked];
     if (checked[index]) {
+      setTotal(total - state[index].cost);
       newChecked[index] = false;
     } else {
       newChecked[index] = true;
+      setTotal(total + state[index].cost);
     }
     setChecked(newChecked);
   };
@@ -54,9 +60,8 @@ function Busket() {
           {state.map((value, index) => {
             return (
               <ListItem key={index}>
-                <ListItemIcon>
+                <ListItemIcon onClick={handleToggle(index)}>
                   <Checkbox
-                    onClick={handleToggle(index)}
                     edge="start"
                     checked={checked[index]}
                     tabIndex={-1}
@@ -76,7 +81,8 @@ function Busket() {
 
       <div className="busket__total">
         <p>
-          Subtotal (1 item): <strong> 0</strong>
+          Subtotal ({checked.filter((value) => value).length} item):{" "}
+          <strong> {total}</strong>
         </p>
         <div className="busket__btn">
           <Button variant="contained" color="secondary">

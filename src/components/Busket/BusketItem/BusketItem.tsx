@@ -13,17 +13,22 @@ function BusketItem({ product, deleteClick }: DeleteClick) {
   return (
     <div className="busketItem">
       <img src={url} alt="" className="busketItem__img" />
-      <div className="busketItem__title">{title}</div>
+      <div className="busketItem__content">
+        <div className="busketItem__title">{title}</div>
+        <div className="busketItem__btn">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              deleteClick();
+            }}
+          >
+            Delete
+          </Button>
+        </div>
+      </div>
+
       <div className="busketItem__cost">{cost}</div>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => {
-          deleteClick();
-        }}
-      >
-        Delete
-      </Button>
     </div>
   );
 }
