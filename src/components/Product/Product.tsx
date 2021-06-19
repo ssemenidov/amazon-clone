@@ -19,8 +19,12 @@ function Product({ product, buyProduct }: BuyProduct) {
         <div className="product__rate">
           {Array(rate)
             .fill("")
-            .map((_) => (
-              <Star className="product__star" color="secondary"></Star>
+            .map((_, index) => (
+              <Star
+                key={index}
+                className="product__star"
+                color="primary"
+              ></Star>
             ))}
         </div>
       </div>
