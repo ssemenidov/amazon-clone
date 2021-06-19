@@ -85,7 +85,7 @@ function Busket() {
           <strong> {total}</strong>
         </p>
         <div className="busket__btn">
-          <Button variant="contained" color="secondary">
+          <Button variant="contained" color="primary">
             proceed to checout
           </Button>
         </div>

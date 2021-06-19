@@ -24,9 +24,8 @@ function Home() {
           <Grid container spacing={3}>
             {state.map((item, index) => {
               return (
-                <Grid item xs={index % 5 > 1 ? 4 : 6}>
+                <Grid key={index} item xs={index % 5 > 1 ? 4 : 6}>
                   <Product
-                    key={index}
                     product={item}
                     buyProduct={() => BuyProduct(index)}
                   ></Product>
