@@ -24,7 +24,6 @@ function App() {
     <div className="app">
       <Router>
         <ThemeProvider theme={theme}>
-          <Header></Header>
           <Switch>
             <Route exact path="/sign-in">
               <SignIn></SignIn>
@@ -37,9 +36,11 @@ function App() {
               <SignUp></SignUp>
             </Route>
             <Route exact path="/busket">
+              <Header></Header>
               <Busket></Busket>
             </Route>
             <Route exact path="/">
+              <Header></Header>
               <Home></Home>
             </Route>
           </Switch>
