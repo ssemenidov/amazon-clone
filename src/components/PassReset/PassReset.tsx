@@ -3,12 +3,12 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
+import { auth } from "../../firebase";
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -32,8 +32,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PassReset() {
+  const history = useHistory();
   const classes = useStyles();
-  const handleSubmit = () => {};
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    const target = e.target as typeof e.target & {
+      email: { value: string };
+    };
+    const email = target.email.value;
+    auth
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        alert("Successful! Cheeck your email.");
+        setTimeout(() => {
+          history.push("/sign-in");
+        }, 1000);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
