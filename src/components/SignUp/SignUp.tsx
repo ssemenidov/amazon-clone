@@ -48,9 +48,9 @@ export default function SignUp() {
     const firstName = target.firstName.value;
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then((auth) => {
-        console.log(auth);
-        const user = auth.user;
+      .then((UserCredential) => {
+        console.log(UserCredential);
+        const user = UserCredential.user;
         user?.updateProfile({
           displayName: firstName,
         });
