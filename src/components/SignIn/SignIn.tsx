@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,6 +12,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { auth } from "../../firebase";
+import firebase from "firebase";
+import { async } from "q";
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -37,7 +39,8 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const history = useHistory();
   const classes = useStyles();
-  const handleSubmit = (e: React.SyntheticEvent) => {
+  const [remember, setRemember] = useState(true);
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     const target = e.target as typeof e.target & {
       email: { value: string };
@@ -45,10 +48,24 @@ export default function SignIn() {
     };
     const email = target.email.value;
     const password = target.password.value;
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then(() => history.push("/"))
-      .catch((e) => alert(e));
+
+    if (remember) {
+      await auth
+        .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        .catch((e) => alert(e));
+      await auth
+        .signInWithEmailAndPassword(email, password)
+        .catch((e) => alert(e));
+    } else {
+      await auth
+        .setPersistence(firebase.auth.Auth.Persistence.NONE)
+        .catch((e) => alert(e));
+      await auth
+        .signInWithEmailAndPassword(email, password)
+        .catch((e) => alert(e));
+    }
+    await history.push("/");
+
     console.log(auth.currentUser);
   };
   return (
@@ -88,7 +105,14 @@ export default function SignIn() {
             autoComplete="current-password"
           />
           <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
+            control={
+              <Checkbox
+                color="primary"
+                value={remember}
+                onClick={(e) => setRemember(!remember)}
+                defaultChecked
+              />
+            }
             label="Remember me"
           />
           <Button
