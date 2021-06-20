@@ -46,16 +46,18 @@ export default function SignUp() {
     const email = target.email.value;
     const password = target.password.value;
     const firstName = target.firstName.value;
-
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
-        history.push("/");
         console.log(auth);
         const user = auth.user;
         user?.updateProfile({
           displayName: firstName,
         });
+        user?.sendEmailVerification();
+      })
+      .then(() => {
+        history.push("/");
       })
       .catch((error) => {
         alert(error);
