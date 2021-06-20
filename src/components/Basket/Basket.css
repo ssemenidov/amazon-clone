@@ -1,11 +1,11 @@
-.busket {
+.basket {
   background-color: #eaeded;
   padding: 15px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
-.busket__cart {
+.basket__cart {
   width: 100%;
   background-color: white;
 
@@ -13,10 +13,10 @@
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   z-index: 1;
 }
-.busket__header {
+.basket__header {
   padding: 20px;
 }
-.busket__total {
+.basket__total {
   min-width: 250px;
   margin-left: 20px;
   display: flex;
@@ -28,6 +28,6 @@
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   z-index: 1;
 }
-.busket__btn {
+.basket__btn {
   margin-top: 5px;
 }

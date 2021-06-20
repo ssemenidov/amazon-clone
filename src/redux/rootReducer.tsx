@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import { busketReducer } from "./busketReducer";
+import { basketReducer } from "./basketReducer";
 import { catalogReducer } from "./catalogReducer";
 export const rootReducer = combineReducers({
-  busket: busketReducer,
+  basket: basketReducer,
   catalog: catalogReducer,
 });

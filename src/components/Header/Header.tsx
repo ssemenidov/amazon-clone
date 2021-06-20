@@ -11,7 +11,7 @@ import { auth } from "../../firebase";
 import { useMemo } from "react";
 
 function Header() {
-  const state = useSelector((state: State) => state.busket.busket);
+  const state = useSelector((state: State) => state.basket.basket);
   const [name, setName] = useState("");
   auth.onAuthStateChanged((user) => {
     setName(user?.displayName || "");
@@ -61,7 +61,7 @@ function Header() {
           <span className="header__optionDown">Prime</span>
         </div>
         <div className="header__option header__optionBasket">
-          <Link to="/busket" className="header__link">
+          <Link to="/basket" className="header__link">
             <ShoppingBasketIcon></ShoppingBasketIcon>
           </Link>
 

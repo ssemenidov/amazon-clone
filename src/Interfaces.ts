@@ -11,8 +11,8 @@ export interface Action {
 }
 
 export interface State {
-  busket: {
-    busket: [
+  basket: {
+    basket: [
       {
         title: string;
         cost: number;

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import Busket from "./components/Busket/Busket";
+import Basket from "./components/Basket/Basket";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import SignIn from "./components/SignIn/SignIn";
@@ -35,9 +35,9 @@ function App() {
             <Route exact path="/sign-up">
               <SignUp></SignUp>
             </Route>
-            <Route exact path="/busket">
+            <Route exact path="/basket">
               <Header></Header>
-              <Busket></Busket>
+              <Basket></Basket>
             </Route>
             <Route exact path="/">
               <Header></Header>

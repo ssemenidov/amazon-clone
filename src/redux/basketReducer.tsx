@@ -2,7 +2,7 @@ import { Action } from "../Interfaces";
 import { ADD_PRODUCT, DELETE_PRODUCT } from "./types";
 
 const initialState = {
-  busket: [
+  basket: [
     {
       title:
         " 2020 Apple iPad (10.2-inch, Wi-Fi, 32GB) - Space Gray (8th Generation)",
@@ -12,16 +12,16 @@ const initialState = {
     },
   ],
 };
-export const busketReducer = (state = initialState, action: Action) => {
+export const basketReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case ADD_PRODUCT:
-      return { ...state, busket: [...state.busket, action.item] };
+      return { ...state, basket: [...state.basket, action.item] };
     case DELETE_PRODUCT:
-      let newBusket = [...state.busket];
-      newBusket.splice(action.item, 1);
-      console.log(newBusket);
+      let newbasket = [...state.basket];
+      newbasket.splice(action.item, 1);
+      console.log(newbasket);
 
-      return { ...state, busket: newBusket };
+      return { ...state, basket: newbasket };
     default:
       return state;
   }

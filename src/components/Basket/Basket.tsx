@@ -1,28 +1,19 @@
 import React, { useState } from "react";
 
-import "./Busket.css";
+import "./Basket.css";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
-import { ProductContent, State } from "../../Interfaces";
-import BusketItem from "./BusketItem/BusketItem";
+import { State } from "../../Interfaces";
+import BasketItem from "./BasketItem/BasketItem";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteProduct } from "../../redux/actions";
-
-const initialProduct: ProductContent = {
-  title:
-    " 2020 Apple iPad (10.2-inch, Wi-Fi, 32GB) - Space Gray (8th Generation)",
-  cost: 629.99,
-  rate: 3,
-  url: "https://m.media-amazon.com/images/I/71gOkVA6-eL._AC_UL480_FMwebp_QL65_.jpg",
-};
-
-function Busket() {
+function Basket() {
   const dispatch = useDispatch();
-  const state = useSelector((state: State) => state.busket.busket);
+  const state = useSelector((state: State) => state.basket.basket);
   const [checked, setChecked] = useState(Array(state.length).fill(false));
   const [total, setTotal] = useState(0);
   const DeleteClick = (index: number) => {
@@ -50,9 +41,9 @@ function Busket() {
     setChecked(newChecked);
   };
   return (
-    <div className="busket">
-      <div className="busket__cart">
-        <div className="busket__header">
+    <div className="basket">
+      <div className="basket__cart">
+        <div className="basket__header">
           <h1>Shopping Cart</h1>
         </div>
         <Divider />
@@ -68,10 +59,10 @@ function Busket() {
                     disableRipple
                   />
                 </ListItemIcon>
-                <BusketItem
+                <BasketItem
                   product={value}
                   deleteClick={() => DeleteClick(index)}
-                ></BusketItem>
+                ></BasketItem>
               </ListItem>
             );
           })}
@@ -79,12 +70,12 @@ function Busket() {
         <Divider />
       </div>
 
-      <div className="busket__total">
+      <div className="basket__total">
         <p>
           Subtotal ({checked.filter((value) => value).length} item):{" "}
           <strong> {total}</strong>
         </p>
-        <div className="busket__btn">
+        <div className="basket__btn">
           <Button variant="contained" color="primary">
             proceed to checout
           </Button>
@@ -94,4 +85,4 @@ function Busket() {
   );
 }
 
-export default Busket;
+export default Basket;
