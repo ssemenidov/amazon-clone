@@ -12,8 +12,11 @@
 }
 .header__link {
   color: white;
+  text-decoration: none;
 }
-
+.header__link * .header__optionDown {
+  text-decoration: underline;
+}
 .header__logo {
   width: 100px;
   object-fit: contain;
@@ -33,7 +36,7 @@
   flex-direction: row;
   align-content: center;
   justify-content: space-evenly;
-  min-width: 265px;
+  min-width: 275px;
 }
 .header__option {
   color: white;

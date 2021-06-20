@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -7,8 +7,20 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { Link } from "react-router-dom";
 import { State } from "../../Interfaces";
 import { useSelector } from "react-redux";
+import { auth } from "../../firebase";
+import { useMemo } from "react";
+
 function Header() {
   const state = useSelector((state: State) => state.busket.busket);
+  const [name, setName] = useState("");
+  auth.onAuthStateChanged((user) => {
+    setName(user?.displayName || "");
+  });
+  const SignOuthandler = () => {
+    if (auth.currentUser) {
+      auth.signOut();
+    }
+  };
   return (
     <div className="header">
       <Link to="/" className="header__link">
@@ -30,11 +42,16 @@ function Header() {
       </div>
       <div className="header__nav">
         <Link to="/sign-in" className="header__link">
-          <div className="header__option">
-            <span className="header__optionUp">Hello</span>
-            <span className="header__optionDown">Sign in</span>
+          <div className="header__option" onClick={SignOuthandler}>
+            <span className="header__optionUp">Hello {name}</span>
+            {auth.currentUser ? (
+              <span className="header__optionDown">Sign out</span>
+            ) : (
+              <span className="header__optionDown">Sign in</span>
+            )}
           </div>
         </Link>
+
         <div className="header__option">
           <span className="header__optionUp">Returns</span>
           <span className="header__optionDown">& Orders</span>
