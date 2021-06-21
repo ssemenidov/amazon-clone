@@ -49,7 +49,7 @@ export default function SignIn() {
 
     if (remember) {
       await auth
-        .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
         .catch((e) => alert(e));
       await auth
         .signInWithEmailAndPassword(email, password)
