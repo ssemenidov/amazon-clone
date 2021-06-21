@@ -1,9 +1,9 @@
-import { Action } from "../Interfaces";
 import { ADD_PRODUCT, DELETE_PRODUCT } from "./types";
-
-const initialState = {
+import { Action, ProductContent } from "../Interfaces";
+const initialState: { basket: Array<ProductContent> } = {
   basket: [
     {
+      id: Date.now().toString(),
       title:
         " 2020 Apple iPad (10.2-inch, Wi-Fi, 32GB) - Space Gray (8th Generation)",
       cost: 629.99,

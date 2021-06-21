@@ -1,4 +1,5 @@
 export interface ProductContent {
+  id: string;
   title: string;
   cost: number;
   rate: number;
@@ -12,23 +13,9 @@ export interface Action {
 
 export interface State {
   basket: {
-    basket: [
-      {
-        title: string;
-        cost: number;
-        rate: number;
-        url: string;
-      }
-    ];
+    basket: Array<ProductContent>;
   };
   catalog: {
-    catalog: [
-      {
-        title: string;
-        cost: number;
-        rate: number;
-        url: string;
-      }
-    ];
+    catalog: Array<ProductContent>;
   };
 }

@@ -11,6 +11,7 @@ import { State } from "../../Interfaces";
 import BasketItem from "./BasketItem/BasketItem";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteProduct } from "../../redux/actions";
+import FlipMove from "react-flip-move";
 function Basket() {
   const dispatch = useDispatch();
   const state = useSelector((state: State) => state.basket.basket);
@@ -24,8 +25,6 @@ function Basket() {
       setTotal(total - state[index].cost);
     }
     newChecked.splice(index, 1);
-    console.log(checked, newChecked, index);
-
     setChecked(newChecked);
   };
 
@@ -47,26 +46,26 @@ function Basket() {
           <h1>Shopping Cart</h1>
         </div>
         <Divider />
-        <List component="ul">
-          {state.map((value, index) => {
-            return (
-              <ListItem key={index}>
-                <ListItemIcon onClick={handleToggle(index)}>
-                  <Checkbox
-                    edge="start"
-                    checked={checked[index]}
-                    tabIndex={-1}
-                    disableRipple
-                  />
-                </ListItemIcon>
-                <BasketItem
-                  product={value}
-                  deleteClick={() => DeleteClick(index)}
-                ></BasketItem>
-              </ListItem>
-            );
-          })}
-        </List>
+
+        <FlipMove>
+          {state.map((value, index) => (
+            <ListItem key={value.id}>
+              <ListItemIcon onClick={handleToggle(index)}>
+                <Checkbox
+                  edge="start"
+                  checked={checked[index]}
+                  tabIndex={-1}
+                  disableRipple
+                />
+              </ListItemIcon>
+              <BasketItem
+                product={value}
+                deleteClick={() => DeleteClick(index)}
+              ></BasketItem>
+            </ListItem>
+          ))}
+        </FlipMove>
+
         <Divider />
       </div>
 
