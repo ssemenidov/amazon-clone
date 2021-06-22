@@ -9,6 +9,12 @@ import SignIn from "./components/SignIn/SignIn";
 import PassReset from "./components/PassReset/PassReset";
 import SignUp from "./components/SignUp/SignUp";
 import Checkout from "./components/Checkout/Checkout";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+const promise = loadStripe(
+  "pk_test_51J5814KHWr3E9rCy5aKAp2MtEfz6iayAwuJq6sWAeiQMPyZCnIVK3lrdFEeF8n6fwzJEpHAfVRxDdBoLKm1t5lHl00U7SkR2dS"
+);
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -42,7 +48,9 @@ function App() {
             </Route>
             <Route exact path="/checkout">
               <Header></Header>
-              <Checkout></Checkout>
+              <Elements stripe={promise}>
+                <Checkout></Checkout>
+              </Elements>
             </Route>
             <Route exact path="/">
               <Header></Header>

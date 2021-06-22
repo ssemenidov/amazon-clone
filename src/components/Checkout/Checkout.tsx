@@ -9,17 +9,28 @@ import { DeleteFromCheckout } from "../../redux/actions";
 import { Button, List, ListItem, Divider } from "@material-ui/core";
 import { auth } from "../../firebase";
 import { useState } from "react";
+import { useElements, useStripe, CardElement } from "@stripe/react-stripe-js";
 
 function Checkout() {
   const dispatch = useDispatch();
   const products = useSelector((state: State) => state.checkout.checkout);
   const [email, setEmail] = useState("");
+
+  const stripe = useStripe();
+  const elements = useElements();
+
   const DeleteClick = (index: number) => {
     dispatch(DeleteFromCheckout(index));
   };
   auth.onAuthStateChanged((user) => {
     setEmail(user?.email || "");
   });
+  const handleFormSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    const target = e.target as typeof e.target & {};
+  };
+  const handleCardChange = (e: React.ChangeEvent) => {};
+
   return (
     <div className="checkout">
       <div className="checkout__container">
@@ -67,6 +78,11 @@ function Checkout() {
         <div className="checkout__section">
           <div className="checkout__title">
             <h2>Payment Method</h2>
+          </div>
+          <div className="checkout__payment">
+            <form action="" onSubmit={() => handleFormSubmit}>
+              <CardElement onChange={() => handleCardChange}></CardElement>
+            </form>
           </div>
         </div>
         <Divider></Divider>
