@@ -1,5 +1,5 @@
 import React from "react";
-import "./Product.css";
+import "./ProductCard.css";
 import Button from "@material-ui/core/Button";
 import { ProductContent } from "../../Interfaces";
 import { Star } from "@material-ui/icons";

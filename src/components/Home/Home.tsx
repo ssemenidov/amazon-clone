@@ -1,16 +1,16 @@
 import React from "react";
 import "./Home.css";
 import Grid from "@material-ui/core/Grid";
-import Product from "../Product/Product";
+import ProductCard from "../ProductCard/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
-import { AddProduct } from "../../redux/actions";
-import { ProductContent, State } from "../../Interfaces";
+import { AddToBasket } from "../../redux/actions";
+import { State } from "../../Interfaces";
 
 function Home() {
   const dispatch = useDispatch();
   const state = useSelector((state: State) => state.catalog.catalog);
   const BuyProduct = (index: number) => {
-    dispatch(AddProduct(state[index]));
+    dispatch(AddToBasket(state[index]));
   };
   return (
     <div className="home">
@@ -25,10 +25,10 @@ function Home() {
             {state.map((item, index) => {
               return (
                 <Grid key={index} item xs={index % 5 > 1 ? 4 : 6}>
-                  <Product
+                  <ProductCard
                     product={item}
                     buyProduct={() => BuyProduct(index)}
-                  ></Product>
+                  ></ProductCard>
                 </Grid>
               );
             })}

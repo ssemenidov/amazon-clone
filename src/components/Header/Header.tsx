@@ -60,15 +60,14 @@ function Header() {
           <span className="header__optionUp">Your</span>
           <span className="header__optionDown">Prime</span>
         </div>
-        <div className="header__option header__optionBasket">
-          <Link to="/basket" className="header__link">
+        <Link to="/basket" className="header__link">
+          <div className="header__option header__optionBasket">
             <ShoppingBasketIcon></ShoppingBasketIcon>
-          </Link>
-
-          <span className="header__optionDown header__BasketCount">
-            {state.length}
-          </span>
-        </div>
+            <span className="header__optionDown header__BasketCount">
+              {state.length}
+            </span>
+          </div>
+        </Link>
       </div>
     </div>
   );

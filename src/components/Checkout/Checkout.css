@@ -1,0 +1,19 @@
+.checkout {
+  background-color: #eaeded;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 90vh;
+}
+.checkout__content {
+  width: 70%;
+  background-color: white;
+
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  z-index: 1;
+}
+.checkout__header {
+  padding: 20px;
+}

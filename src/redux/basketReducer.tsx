@@ -1,4 +1,4 @@
-import { ADD_PRODUCT, DELETE_PRODUCT } from "./types";
+import { ADD_TO_BASKET, DELETE_FROM_BASKET } from "./types";
 import { Action, ProductContent } from "../Interfaces";
 const initialState: { basket: Array<ProductContent> } = {
   basket: [
@@ -14,9 +14,9 @@ const initialState: { basket: Array<ProductContent> } = {
 };
 export const basketReducer = (state = initialState, action: Action) => {
   switch (action.type) {
-    case ADD_PRODUCT:
+    case ADD_TO_BASKET:
       return { ...state, basket: [...state.basket, action.item] };
-    case DELETE_PRODUCT:
+    case DELETE_FROM_BASKET:
       let newbasket = [...state.basket];
       newbasket.splice(action.item, 1);
       console.log(newbasket);

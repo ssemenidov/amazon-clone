@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import "./Basket.css";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
@@ -10,15 +9,16 @@ import Checkbox from "@material-ui/core/Checkbox";
 import { State } from "../../Interfaces";
 import BasketItem from "./BasketItem/BasketItem";
 import { useDispatch, useSelector } from "react-redux";
-import { DeleteProduct } from "../../redux/actions";
+import { AddToCheckout, DeleteFromBasket } from "../../redux/actions";
 import FlipMove from "react-flip-move";
+import { Link } from "react-router-dom";
 function Basket() {
   const dispatch = useDispatch();
   const state = useSelector((state: State) => state.basket.basket);
   const [checked, setChecked] = useState(Array(state.length).fill(false));
   const [total, setTotal] = useState(0);
   const DeleteClick = (index: number) => {
-    dispatch(DeleteProduct(index));
+    dispatch(DeleteFromBasket(index));
 
     let newChecked = [...checked];
     if (newChecked[index]) {
@@ -38,6 +38,9 @@ function Basket() {
       setTotal(total + state[index].cost);
     }
     setChecked(newChecked);
+  };
+  const handleCheckout = () => {
+    dispatch(AddToCheckout(state.filter((_, index) => checked[index])));
   };
   return (
     <div className="basket">
@@ -74,10 +77,17 @@ function Basket() {
           Subtotal ({checked.filter((value) => value).length} item):{" "}
           <strong> {total}</strong>
         </p>
+
         <div className="basket__btn">
-          <Button variant="contained" color="primary">
-            proceed to checout
-          </Button>
+          <Link to="/checkout">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => handleCheckout()}
+            >
+              proceed to checkout
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

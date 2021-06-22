@@ -6,7 +6,7 @@ export interface DeleteClick {
   product: ProductContent;
   deleteClick: () => void;
 }
-function basketItem({ product, deleteClick }: DeleteClick) {
+function BasketItem({ product, deleteClick }: DeleteClick) {
   const { title, cost, rate, url } = product;
   return (
     <div className="basketItem">
@@ -33,4 +33,4 @@ function basketItem({ product, deleteClick }: DeleteClick) {
   );
 }
 
-export default basketItem;
+export default BasketItem;

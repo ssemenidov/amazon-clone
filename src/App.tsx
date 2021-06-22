@@ -8,6 +8,7 @@ import Home from "./components/Home/Home";
 import SignIn from "./components/SignIn/SignIn";
 import PassReset from "./components/PassReset/PassReset";
 import SignUp from "./components/SignUp/SignUp";
+import Checkout from "./components/Checkout/Checkout";
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -38,6 +39,10 @@ function App() {
             <Route exact path="/basket">
               <Header></Header>
               <Basket></Basket>
+            </Route>
+            <Route exact path="/checkout">
+              <Header></Header>
+              <Checkout></Checkout>
             </Route>
             <Route exact path="/">
               <Header></Header>

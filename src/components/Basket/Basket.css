@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  min-height: 90vh;
 }
 .basket__cart {
   width: 100%;
@@ -30,4 +31,7 @@
 }
 .basket__btn {
   margin-top: 5px;
+}
+.basket__btn > a {
+  text-decoration: none;
 }
