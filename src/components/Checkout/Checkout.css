@@ -6,14 +6,20 @@
   align-items: flex-start;
   min-height: 90vh;
 }
-.checkout__content {
-  width: 70%;
+.checkout__container {
+  width: 80%;
   background-color: white;
+  padding: 15px;
 
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   z-index: 1;
 }
 .checkout__header {
-  padding: 20px;
+  padding-top: 5px;
+  padding-bottom: 20px;
+  padding-left: 5px;
+}
+.checkout__section {
+  padding: 10px 0;
 }

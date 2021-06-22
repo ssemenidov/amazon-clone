@@ -49,27 +49,28 @@ function Basket() {
           <h1>Shopping Cart</h1>
         </div>
         <Divider />
-
-        <FlipMove>
-          {state.map((value, index) => (
-            <ListItem key={value.id}>
-              <ListItemIcon onClick={handleToggle(index)}>
-                <Checkbox
-                  edge="start"
-                  checked={checked[index]}
-                  tabIndex={-1}
-                  disableRipple
+        {state.length ? (
+          <FlipMove>
+            {state.map((value, index) => (
+              <ListItem key={value.id}>
+                <ListItemIcon onClick={handleToggle(index)}>
+                  <Checkbox
+                    edge="start"
+                    checked={checked[index]}
+                    tabIndex={-1}
+                    disableRipple
+                  />
+                </ListItemIcon>
+                <BasketItem
+                  product={value}
+                  deleteClick={() => DeleteClick(index)}
                 />
-              </ListItemIcon>
-              <BasketItem
-                product={value}
-                deleteClick={() => DeleteClick(index)}
-              ></BasketItem>
-            </ListItem>
-          ))}
-        </FlipMove>
-
-        <Divider />
+              </ListItem>
+            ))}
+          </FlipMove>
+        ) : (
+          <h2>Basket is empty </h2>
+        )}
       </div>
 
       <div className="basket__total">
