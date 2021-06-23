@@ -10,26 +10,65 @@ import { Button, List, ListItem, Divider } from "@material-ui/core";
 import { auth } from "../../firebase";
 import { useState } from "react";
 import { useElements, useStripe, CardElement } from "@stripe/react-stripe-js";
-
+import stripeJs from "@stripe/stripe-js";
+import axios from "../../axios";
+import { useHistory } from "react-router-dom";
 function Checkout() {
+  const history = useHistory();
   const dispatch = useDispatch();
-  const products = useSelector((state: State) => state.checkout.checkout);
+  const checkout = useSelector((state: State) => state.checkout.checkout);
   const [email, setEmail] = useState("");
+  const [clientSecret, setClientSecret] = useState("");
+  const [error, setError] = useState<string | null>("");
+  const [success, setSuccess] = useState(false);
+  const [process, setProcess] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   const stripe = useStripe();
   const elements = useElements();
 
+  useEffect(() => {
+    const getClientSecret = async () => {
+      const res = await axios({
+        method: "post",
+        url: `/payment/create?total=${1000 * 100}`,
+      });
+      setClientSecret(res.data.clientSecret);
+    };
+    getClientSecret();
+  }, [checkout]);
   const DeleteClick = (index: number) => {
     dispatch(DeleteFromCheckout(index));
   };
   auth.onAuthStateChanged((user) => {
     setEmail(user?.email || "");
   });
-  const handleFormSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    const target = e.target as typeof e.target & {};
+  const handleFormSubmit = async (event: React.SyntheticEvent) => {
+    //const target = e.target as typeof e.target & {};
+    event.preventDefault();
+    setProcess(true);
+    if (!stripe || !elements) {
+      return;
+    }
+
+    const cardElement = elements.getElement(CardElement);
+    const payload = await stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement) || { token: "" },
+        },
+      })
+      .then(({ paymentIntent }) => {
+        setSuccess(true);
+        setError(null);
+        setProcess(false);
+        history.replace("/orders");
+      });
   };
-  const handleCardChange = (e: React.ChangeEvent) => {};
+  const handleCardChange = (e: stripeJs.StripeCardNumberElementChangeEvent) => {
+    setDisabled(e.empty);
+    setError(e.error ? e.error.message : "");
+  };
 
   return (
     <div className="checkout">
@@ -57,9 +96,9 @@ function Checkout() {
             <h2>Items</h2>
           </div>
 
-          {products.length ? (
+          {checkout.length ? (
             <FlipMove>
-              {products.map((value, index) => (
+              {checkout.map((value, index) => (
                 <ListItem key={value.id}>
                   <BasketItem
                     product={value}
@@ -80,16 +119,20 @@ function Checkout() {
             <h2>Payment Method</h2>
           </div>
           <div className="checkout__payment">
-            <form action="" onSubmit={() => handleFormSubmit}>
+            <form onSubmit={() => handleFormSubmit}>
               <CardElement onChange={() => handleCardChange}></CardElement>
+              <Divider />
+              <Button
+                disabled={disabled || success || process}
+                variant="contained"
+                type="submit"
+                color="primary"
+                onClick={() => {}}
+              >
+                {process ? <p>Processing...</p> : "Buy Now"}
+              </Button>
             </form>
           </div>
-        </div>
-        <Divider></Divider>
-        <div className="checkout__section">
-          <Button variant="contained" color="primary" onClick={() => {}}>
-            Buy Now
-          </Button>
         </div>
       </div>
     </div>
