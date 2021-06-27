@@ -34,8 +34,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "firebase": "firebase deploy",
-    "deploy": "npm build && npm firebase",
-    "emulate": "firebase emulators:start   --only hosting"
+    "deploy": "npm run build && npm run firebase",
+    "emulate": "firebase emulators:start "
   },
   "eslintConfig": {
     "extends": [

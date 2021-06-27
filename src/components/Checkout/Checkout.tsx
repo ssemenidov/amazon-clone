@@ -67,6 +67,10 @@ function Checkout() {
         dispatch(DeleteFromBasketMany(checkout));
         dispatch(ClearCheckout());
         history.replace('/orders');
+      })
+      .catch((error) => {
+        setError(error);
+        alert(error);
       });
   };
 
