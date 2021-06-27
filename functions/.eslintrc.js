@@ -9,8 +9,8 @@ module.exports = {
     ecmaVersion: 8,
   },
   rules: {
-    quotes: ['error', 'single'],
-    indent: ['error', 2],
+    quotes: [2, 'single'],
+    indent: [2, 2],
     semi: [2, 'always'],
   },
 };

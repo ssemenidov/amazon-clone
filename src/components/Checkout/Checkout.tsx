@@ -13,12 +13,15 @@ import {useElements, useStripe, CardElement} from '@stripe/react-stripe-js';
 import stripeJs from '@stripe/stripe-js';
 import axios from '../../axios';
 import {useHistory} from 'react-router-dom';
+import NumberFormat from 'react-number-format';
+import {getCheckoutTotal} from '../../redux/checkoutReducer';
 function Checkout() {
   const history = useHistory();
   const dispatch = useDispatch();
   const checkout = useSelector((state: State) => state.checkout.checkout);
   const [email, setEmail] = useState('');
   const [clientSecret, setClientSecret] = useState('');
+
   const [error, setError] = useState<string | null>('');
   const [success, setSuccess] = useState(false);
   const [process, setProcess] = useState(false);
@@ -46,6 +49,7 @@ function Checkout() {
       return;
     }
     const cardElement = elements.getElement(CardElement);
+
     const payload = await stripe
       .confirmCardPayment(clientSecret, {
         payment_method: {
@@ -54,14 +58,16 @@ function Checkout() {
       })
       .then(({paymentIntent}) => {
         setSuccess(true);
+        alert(success);
         setError(null);
         setProcess(false);
         history.replace('/orders');
       });
   };
 
-  const handleCardChange = (e: stripeJs.StripeCardNumberElementChangeEvent) => {
+  const handleCardChange = (e: stripeJs.StripeCardElementChangeEvent) => {
     setDisabled(e.empty);
+
     setError(e.error ? e.error.message : '');
   };
 
@@ -121,18 +127,33 @@ function Checkout() {
             <h2>Payment Method</h2>
           </div>
           <div className='checkout__payment'>
-            <form onSubmit={() => handleFormSubmit}>
-              <CardElement onChange={() => handleCardChange}></CardElement>
+            <NumberFormat
+              value={getCheckoutTotal(checkout)}
+              className='foo'
+              displayType={'text'}
+              thousandSeparator={true}
+              prefix={'$'}
+              decimalScale={2}
+              renderText={(value) => (
+                <div className='checkout__foo'>
+                  <strong>{value}</strong>
+                </div>
+              )}
+            />
+            <form onSubmit={handleFormSubmit}>
+              <CardElement onChange={handleCardChange}></CardElement>
               <Divider />
-              <Button
-                disabled={disabled || success || process}
-                variant='contained'
-                type='submit'
-                color='primary'
-                onClick={() => {}}
-              >
-                {process ? <p>Processing...</p> : 'Buy Now'}
-              </Button>
+              <div className='checkout__btn'>
+                <Button
+                  disabled={disabled || success || process}
+                  variant='contained'
+                  type='submit'
+                  color='primary'
+                  onClick={() => {}}
+                >
+                  {process ? <p>Processing...</p> : 'Buy Now'}
+                </Button>
+              </div>
             </form>
           </div>
         </div>

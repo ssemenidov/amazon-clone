@@ -30,3 +30,9 @@
   max-width: 600px;
   padding: 20px 10px;
 }
+.checkout__foo {
+  margin-bottom: 10px;
+}
+.checkout__btn {
+  margin-top: 10px;
+}
