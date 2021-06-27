@@ -29,4 +29,7 @@ export interface State {
   checkout: {
     checkout: Array<ProductContent>;
   };
+  orders: {
+    orders: Array<ProductContent>;
+  };
 }

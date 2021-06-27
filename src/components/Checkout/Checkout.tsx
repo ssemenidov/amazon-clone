@@ -38,7 +38,7 @@ function Checkout() {
     const getClientSecret = async () => {
       const res = await axios({
         method: 'post',
-        url: `/payments/create?total=${1000 * 100}`,
+        url: `/payments/create?total=${getCheckoutTotal(checkout) * 100}`,
       });
       setClientSecret(res.data.clientSecret);
     };

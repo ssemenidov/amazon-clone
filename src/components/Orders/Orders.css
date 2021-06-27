@@ -1,0 +1,22 @@
+.orders {
+  background-color: #eaeded;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 90vh;
+}
+.orders__container {
+  width: 80%;
+  background-color: white;
+  padding: 15px;
+
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  z-index: 1;
+}
+.orders__header {
+  padding-top: 5px;
+  padding-bottom: 20px;
+  padding-left: 5px;
+}
