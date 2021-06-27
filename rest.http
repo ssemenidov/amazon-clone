@@ -1,0 +1,1 @@
+post http://localhost:5001/clone-ce035/us-central1/api/payments/create?total=100000
