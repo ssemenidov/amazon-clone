@@ -2,7 +2,9 @@ import {ProductContent} from '../Interfaces';
 import {
   ADD_TO_BASKET,
   ADD_TO_CHECKOUT,
+  CLEAR_CHECKOUT,
   DELETE_FROM_BASKET,
+  DELETE_FROM_BASKET_MANY,
   DELETE_FROM_CHECKOUT,
 } from './types';
 
@@ -18,6 +20,12 @@ export function DeleteFromBasket(index: number) {
     item: index,
   };
 }
+export function DeleteFromBasketMany(products: ProductContent[]) {
+  return {
+    type: DELETE_FROM_BASKET_MANY,
+    item: products,
+  };
+}
 export function AddToCheckout(products: ProductContent[]) {
   return {
     type: ADD_TO_CHECKOUT,
@@ -28,5 +36,10 @@ export function DeleteFromCheckout(index: number) {
   return {
     type: DELETE_FROM_CHECKOUT,
     item: index,
+  };
+}
+export function ClearCheckout() {
+  return {
+    type: CLEAR_CHECKOUT,
   };
 }

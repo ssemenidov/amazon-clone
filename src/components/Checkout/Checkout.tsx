@@ -5,7 +5,11 @@ import FlipMove from 'react-flip-move';
 import {useDispatch, useSelector} from 'react-redux';
 import {State} from '../../Interfaces';
 import BasketItem from '../Basket/BasketItem/BasketItem';
-import {DeleteFromCheckout} from '../../redux/actions';
+import {
+  ClearCheckout,
+  DeleteFromBasketMany,
+  DeleteFromCheckout,
+} from '../../redux/actions';
 import {Button, List, ListItem, Divider} from '@material-ui/core';
 import {auth} from '../../firebase';
 import {useState} from 'react';
@@ -58,9 +62,10 @@ function Checkout() {
       })
       .then(({paymentIntent}) => {
         setSuccess(true);
-        alert(success);
         setError(null);
         setProcess(false);
+        dispatch(DeleteFromBasketMany(checkout));
+        dispatch(ClearCheckout());
         history.replace('/orders');
       });
   };

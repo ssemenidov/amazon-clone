@@ -86,7 +86,7 @@ function Basket() {
             thousandSeparator={true}
             prefix={'$'}
             decimalScale={2}
-            renderText={(value) => <div>{value}</div>}
+            renderText={(value) => <strong> {value}</strong>}
           />
         </p>
 

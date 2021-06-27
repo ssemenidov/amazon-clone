@@ -1,4 +1,4 @@
-import {ADD_TO_CHECKOUT, DELETE_FROM_CHECKOUT} from './types';
+import {ADD_TO_CHECKOUT, CLEAR_CHECKOUT, DELETE_FROM_CHECKOUT} from './types';
 import {Action, ProductContent} from '../Interfaces';
 const initialState: {checkout: Array<ProductContent>} = {
   checkout: [],
@@ -13,8 +13,9 @@ export const checkoutReducer = (state = initialState, action: Action) => {
     case DELETE_FROM_CHECKOUT:
       let newcheckout = [...state.checkout];
       newcheckout.splice(action.item, 1);
-      //console.log(newcheckout);
       return {...state, checkout: newcheckout};
+    case CLEAR_CHECKOUT:
+      return {...state, checkout: []};
     default:
       return state;
   }
