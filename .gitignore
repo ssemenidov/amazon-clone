@@ -29,3 +29,4 @@ firebase-debug.log
 firestore-debug.log
 /.firebase
 ui-debug.log
+rest.http
