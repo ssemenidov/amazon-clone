@@ -61,6 +61,8 @@ function Checkout() {
         },
       })
       .then(({paymentIntent}) => {
+        console.log(paymentIntent);
+
         setSuccess(true);
         setError(null);
         setProcess(false);
@@ -71,6 +73,7 @@ function Checkout() {
       .catch((error) => {
         setError(error);
         alert(error);
+        setProcess(false);
       });
   };
 
