@@ -1,10 +1,8 @@
 const functions = require('firebase-functions');
 const express = require('express');
 const cors = require('cors');
-const stripe = require('stripe')(
-  // eslint-disable-next-line max-len
-  'sk_test_51J5814KHWr3E9rCy7osCC2feFtWWk8Uz2OneMHlEEbWkwKgj5apumGVSykO1A1U3y9Au4JHAdMUPfxDfytp7zubG00QDM9xnJD'
-);
+import {SECRET_KEY} from './keys';
+const stripe = require('stripe')(SECRET_KEY || '');
 // -App config
 const app = express();
 
