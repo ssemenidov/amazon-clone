@@ -1,46 +1,30 @@
-# Getting Started with Create React App
+# Amazon clone
+Fully Funqctioning E-Commerce Website with Stripe Payment Gateway.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live Website: https://clone-ce035.web.app/
 
-## Available Scripts
+## Stack:
+- React
+- Redux
+- Typescipt
+- Firebase: hosting, auth, firestore, functions
+- Stripe
+- axios 
+- Node.js+Express
+- Material UI
 
-In the project directory, you can run:
+## Features:
+- [Stripe](https://stripe.com/) payment system 
+- [Firebase](https://firebase.google.com/) functions backend Node.js+Express
+- Firebase authentication (Sign-In, Sign-Up, Forgot Password)
+- Typescript definitions
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Screenshots:
+- Home Page
+![home](https://user-images.githubusercontent.com/50819295/123570888-b0ecbc80-d7fb-11eb-8e52-129c7acd01f5.png)
+- Basket Page
+![bascket](https://user-images.githubusercontent.com/50819295/123570893-b21de980-d7fb-11eb-91d7-f57134b3a99c.png)
+- Payment Page
+![payment](https://user-images.githubusercontent.com/50819295/123570897-b34f1680-d7fb-11eb-827f-3639d9ddad12.png)
+- Login Page
+![login](https://user-images.githubusercontent.com/50819295/123570899-b4804380-d7fb-11eb-98ba-ff80398c00de.png)
