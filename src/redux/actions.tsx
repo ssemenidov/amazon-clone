@@ -1,4 +1,4 @@
-import {ProductContent} from '../Interfaces';
+import {Order, ProductContent} from '../Interfaces';
 import {
   ADD_TO_BASKET,
   ADD_TO_CHECKOUT,
@@ -6,12 +6,20 @@ import {
   DELETE_FROM_BASKET,
   DELETE_FROM_BASKET_MANY,
   DELETE_FROM_CHECKOUT,
+  SET_ORDERS,
 } from './types';
 
 export function AddToBasket(product: ProductContent) {
   return {
     type: ADD_TO_BASKET,
     item: {...product, id: Date.now().toString()},
+  };
+}
+
+export function SetOrders(orders: Order[]) {
+  return {
+    type: SET_ORDERS,
+    item: orders,
   };
 }
 export function DeleteFromBasket(index: number) {
