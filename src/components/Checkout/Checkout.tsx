@@ -11,7 +11,7 @@ import {
   DeleteFromCheckout,
 } from '../../redux/actions';
 import {Button, List, ListItem, Divider} from '@material-ui/core';
-import {auth} from '../../firebase';
+import {auth, db} from '../../firebase';
 import {useState} from 'react';
 import {useElements, useStripe, CardElement} from '@stripe/react-stripe-js';
 import stripeJs from '@stripe/stripe-js';
@@ -60,9 +60,21 @@ function Checkout() {
           card: elements.getElement(CardElement) || {token: ''},
         },
       })
-      .then(({paymentIntent}) => {
-        console.log(paymentIntent);
+      .then(async ({paymentIntent}) => {
+        console.log(paymentIntent, auth.currentUser);
 
+        if (paymentIntent) {
+          await db
+            .collection('users')
+            .doc(auth.currentUser?.uid)
+            .collection('orders')
+            .doc(paymentIntent.id)
+            .set({
+              checkout: checkout,
+              amount: paymentIntent.amount,
+              created: paymentIntent.created,
+            });
+        }
         setSuccess(true);
         setError(null);
         setProcess(false);
