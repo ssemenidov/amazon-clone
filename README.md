@@ -26,5 +26,8 @@ Live Website: https://clone-ce035.web.app/
 ![bascket](https://user-images.githubusercontent.com/50819295/123570893-b21de980-d7fb-11eb-91d7-f57134b3a99c.png)
 - Payment Page
 ![payment](https://user-images.githubusercontent.com/50819295/123570897-b34f1680-d7fb-11eb-827f-3639d9ddad12.png)
+- Order Page
+![order](https://user-images.githubusercontent.com/50819295/124224217-ccc3cb80-db37-11eb-8095-9bfdace0a99d.png)
+
 - Login Page
 ![login](https://user-images.githubusercontent.com/50819295/123570899-b4804380-d7fb-11eb-98ba-ff80398c00de.png)
