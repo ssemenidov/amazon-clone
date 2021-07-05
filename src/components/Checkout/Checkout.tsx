@@ -40,7 +40,7 @@ function Checkout() {
         method: 'post',
         url: `/payments/create?total=${getCheckoutTotal(checkout) * 100}`,
       });
-      setClientSecret(res.data.clientSecret);
+      await setClientSecret(res.data.clientSecret);
     };
     getClientSecret();
   }, [checkout]);
@@ -61,7 +61,7 @@ function Checkout() {
         },
       })
       .then(async ({paymentIntent}) => {
-        console.log(paymentIntent, auth.currentUser);
+        //console.log(paymentIntent, auth.currentUser);
 
         if (paymentIntent) {
           await db
@@ -74,17 +74,19 @@ function Checkout() {
               amount: paymentIntent.amount,
               created: paymentIntent.created,
             });
+          setSuccess(true);
+          setError(null);
+          setProcess(false);
+          dispatch(DeleteFromBasketMany(checkout));
+          dispatch(ClearCheckout());
+          history.replace('/orders');
+        } else {
+          setProcess(false);
+          alert('Incorrect Card details. Please tap 4 2 4 2 4 2 4 2....');
         }
-        setSuccess(true);
-        setError(null);
-        setProcess(false);
-        dispatch(DeleteFromBasketMany(checkout));
-        dispatch(ClearCheckout());
-        history.replace('/orders');
       })
       .catch((error) => {
         setError(error);
-        alert(error);
         setProcess(false);
       });
   };

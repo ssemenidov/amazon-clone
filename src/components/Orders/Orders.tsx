@@ -32,8 +32,8 @@ function Orders() {
         <Divider />
 
         {orders.length ? (
-          orders.map((item) => (
-            <div className='orders__item'>
+          orders.map((item, index) => (
+            <div className='orders__item' key={index}>
               <div className='order__date'>
                 <h3>
                   Date:
