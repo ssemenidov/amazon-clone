@@ -5,16 +5,7 @@ import {
 } from './types';
 import {Action, ProductContent} from '../Interfaces';
 const initialState: {basket: Array<ProductContent>} = {
-  basket: [
-    {
-      id: Date.now().toString(),
-      title:
-        ' 2020 Apple iPad (10.2-inch, Wi-Fi, 32GB) - Space Gray (8th Generation)',
-      cost: 629.99,
-      rate: 3,
-      url: 'https://m.media-amazon.com/images/I/71gOkVA6-eL._AC_UL480_FMwebp_QL65_.jpg',
-    },
-  ],
+  basket: [],
 };
 
 export const basketReducer = (state = initialState, action: Action) => {
@@ -27,13 +18,15 @@ export const basketReducer = (state = initialState, action: Action) => {
 
       return {...state, basket: newbasket};
     case DELETE_FROM_BASKET_MANY:
-      let newbasket2 = [...state.basket];
-      newbasket2.forEach((item, index) => {
+      let newbasket2: ProductContent[] = [];
+      state.basket.forEach((item, index) => {
+        let f = true;
         action.item.forEach((element: any) => {
           if (item.id === element.id) {
-            newbasket2.splice(index, 1);
+            f = false;
           }
         });
+        if (f) newbasket2.push(item);
       });
       return {...state, basket: newbasket2};
 

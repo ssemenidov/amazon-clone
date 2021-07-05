@@ -12,6 +12,7 @@
     "quotes": [2, "single"],
     "indent": [2, 2],
     "semi": [2, "always"],
-    "linebreak-style": ["error", "windows"]
+    "linebreak-style": ["error", "windows"],
+    "max-len": ["error", {"code": 80}]
   }
 }

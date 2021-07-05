@@ -10,15 +10,11 @@ export interface Action {
   type: String;
   item: any;
 }
-export interface ProductAction {
-  type: String;
-  item: ProductContent;
+export interface Order {
+  checkout?: ProductContent[];
+  amount?: number;
+  created?: number;
 }
-export interface IndexAction {
-  type: String;
-  item: number;
-}
-
 export interface State {
   basket: {
     basket: Array<ProductContent>;
@@ -30,6 +26,6 @@ export interface State {
     checkout: Array<ProductContent>;
   };
   orders: {
-    orders: Array<ProductContent>;
+    orders: Order[];
   };
 }

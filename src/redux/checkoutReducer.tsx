@@ -9,7 +9,7 @@ export const getCheckoutTotal = (checkout: Array<ProductContent>) => {
 export const checkoutReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case ADD_TO_CHECKOUT:
-      return {...state, checkout: [...state.checkout, ...action.item]};
+      return {...state, checkout: action.item};
     case DELETE_FROM_CHECKOUT:
       let newcheckout = [...state.checkout];
       newcheckout.splice(action.item, 1);

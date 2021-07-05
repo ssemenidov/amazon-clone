@@ -11,7 +11,7 @@ import {
   DeleteFromCheckout,
 } from '../../redux/actions';
 import {Button, List, ListItem, Divider} from '@material-ui/core';
-import {auth} from '../../firebase';
+import {auth, db} from '../../firebase';
 import {useState} from 'react';
 import {useElements, useStripe, CardElement} from '@stripe/react-stripe-js';
 import stripeJs from '@stripe/stripe-js';
@@ -38,9 +38,11 @@ function Checkout() {
     const getClientSecret = async () => {
       const res = await axios({
         method: 'post',
-        url: `/payments/create?total=${getCheckoutTotal(checkout) * 100}`,
+        url: `/payments/create?total=${Math.floor(
+          getCheckoutTotal(checkout) * 100
+        )}`,
       });
-      setClientSecret(res.data.clientSecret);
+      await setClientSecret(res.data.clientSecret);
     };
     getClientSecret();
   }, [checkout]);
@@ -60,17 +62,34 @@ function Checkout() {
           card: elements.getElement(CardElement) || {token: ''},
         },
       })
-      .then(({paymentIntent}) => {
-        setSuccess(true);
-        setError(null);
-        setProcess(false);
-        dispatch(DeleteFromBasketMany(checkout));
-        dispatch(ClearCheckout());
-        history.replace('/orders');
+      .then(async ({paymentIntent}) => {
+        //console.log(paymentIntent, auth.currentUser);
+
+        if (paymentIntent) {
+          await db
+            .collection('users')
+            .doc(auth.currentUser?.uid)
+            .collection('orders')
+            .doc(paymentIntent.id)
+            .set({
+              checkout: checkout,
+              amount: paymentIntent.amount,
+              created: paymentIntent.created,
+            });
+          setSuccess(true);
+          setError(null);
+          setProcess(false);
+          dispatch(DeleteFromBasketMany(checkout));
+          dispatch(ClearCheckout());
+          history.replace('/orders');
+        } else {
+          setProcess(false);
+          alert('Incorrect Card details. Please tap 4 2 4 2 4 2 4 2....');
+        }
       })
       .catch((error) => {
         setError(error);
-        alert(error);
+        setProcess(false);
       });
   };
 

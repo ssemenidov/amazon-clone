@@ -8,14 +8,16 @@ import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import NumberFormat from 'react-number-format';
 import FlipMove from 'react-flip-move';
-import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 import {State} from '../../Interfaces';
 import BasketItem from './BasketItem/BasketItem';
 import {useDispatch, useSelector} from 'react-redux';
 import {AddToCheckout, DeleteFromBasket} from '../../redux/actions';
+import {auth} from '../../firebase';
 
 function Basket() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const state = useSelector((state: State) => state.basket.basket);
   const [checked, setChecked] = useState(Array(state.length).fill(false));
@@ -43,7 +45,10 @@ function Basket() {
     setChecked(newChecked);
   };
   const handleCheckout = () => {
-    dispatch(AddToCheckout(state.filter((_, index) => checked[index])));
+    if (auth.currentUser) {
+      dispatch(AddToCheckout(state.filter((_, index) => checked[index])));
+      history.push('/checkout');
+    } else alert('Please Sign-In');
   };
   return (
     <div className='basket'>
@@ -91,15 +96,13 @@ function Basket() {
         </p>
 
         <div className='basket__btn'>
-          <Link to='/checkout'>
-            <Button
-              variant='contained'
-              color='primary'
-              onClick={() => handleCheckout()}
-            >
-              proceed to checkout
-            </Button>
-          </Link>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={() => handleCheckout()}
+          >
+            proceed to checkout
+          </Button>
         </div>
       </div>
     </div>
