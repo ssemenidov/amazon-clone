@@ -18,13 +18,15 @@ export const basketReducer = (state = initialState, action: Action) => {
 
       return {...state, basket: newbasket};
     case DELETE_FROM_BASKET_MANY:
-      let newbasket2 = [...state.basket];
-      newbasket2.forEach((item, index) => {
+      let newbasket2: ProductContent[] = [];
+      state.basket.forEach((item, index) => {
+        let f = true;
         action.item.forEach((element: any) => {
           if (item.id === element.id) {
-            newbasket2.splice(index, 1);
+            f = false;
           }
         });
+        if (f) newbasket2.push(item);
       });
       return {...state, basket: newbasket2};
 
