@@ -25,8 +25,13 @@ function Header() {
     <div className='header'>
       <Link to='/' className='header__link'>
         <img
-          className='header__logo'
+          className='header__logo__big'
           src='https://i.pinimg.com/originals/47/b7/bd/47b7bdac4285ee24654ca7d68cf06351.png'
+          alt='a'
+        />
+        <img
+          className='header__logo__small'
+          src='https://i.pinimg.com/474x/53/a3/fa/53a3fa9b77f7dc8c321f05b1661cc305.jpg'
           alt='a'
         />
       </Link>

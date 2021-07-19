@@ -39,3 +39,17 @@
 .basketItem__btn {
   margin: 10px 0;
 }
+@media (max-width: 480px) {
+  .basketItem {
+    flex-direction: column;
+  }
+  .basketItem__left {
+    flex-direction: column;
+  }
+  .MuiListItemIcon-root {
+    min-width: 0px !important;
+  }
+  .basketItem__img {
+    max-width: 100%;
+  }
+}

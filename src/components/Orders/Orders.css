@@ -33,3 +33,8 @@
 .order__date {
   margin-top: 10px;
 }
+@media (max-width: 480px) {
+  .orders__container {
+    width: 100%;
+  }
+}

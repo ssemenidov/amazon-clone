@@ -17,7 +17,7 @@
 .header__link * .header__optionDown {
   text-decoration: underline;
 }
-.header__logo {
+.header__logo__big {
   width: 100px;
   object-fit: contain;
   margin: 0 20px;
@@ -27,6 +27,7 @@
   background-color: white;
   width: 100%;
 }
+
 .header__search > .MuiInput-root {
   width: 100%;
   padding-left: 10px;
@@ -58,4 +59,21 @@
 .header__optionDown {
   font-size: 14px;
   font-weight: 600;
+}
+.header__logo__small {
+  display: none;
+  border-radius: 100px;
+  margin-left: 5px;
+}
+@media (max-width: 480px) {
+  .header__search {
+    display: none;
+  }
+  .header__logo__big {
+    display: none;
+  }
+  .header__logo__small {
+    max-width: 40px;
+    display: block;
+  }
 }

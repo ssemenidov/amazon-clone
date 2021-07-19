@@ -36,3 +36,8 @@
 .checkout__btn {
   margin-top: 10px;
 }
+@media (max-width: 480px) {
+  .checkout__container {
+    width: 100%;
+  }
+}
